@@ -1,42 +1,350 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #004d40; /* Dark green background */
+  color: #ffffff; /* White text color */
+  padding: 0.5rem 1rem; /* Padding around the navbar */
+  width: 100%;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  margin: 0; /* Removes default margin */
+  font-size: 1.5rem; /* Larger font size for the logo */
+  color: #ffffff;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.links a {
+  color: #ffffff; /* White text color for links */
+  text-decoration: none; /* Removes underline from links */
+  margin-left: .75rem; /* Spacing between links */
+  font-size: 1rem; /* Font size for links */
+  margin-right: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.links a:hover {
+  text-decoration: underline; /* Underline links on hover for better visibility */
+  background-color: #519186; /* Changes background on hover, adjust color as needed */
+  border-radius: 10%;
+  padding: 5px;
+  color: #ffffff;
+}
+.banner{
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://images.unsplash.com/photo-1611374243147-44a702c2d44c?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGdvbGZ8ZW58MHx8MHx8fDA%3D);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.banner h1 {
+  color: rgb(227, 223, 223);
+  font-size: 7em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5)
+  
+}
+.banner p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-size: 2em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  color: rgb(227, 223, 223)
+}
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Adjust the space between cards */
+  justify-content: center; /* Center the cards within the container */
+  padding: 20px; /* Padding around the container */
 }
 
 .card {
-  padding: 2em;
+  background: #004d40; /* Card background color */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+  
+  border-radius: 8px; /* Rounded corners */
+  overflow: hidden; /* Ensures the content fits within the corners */
+  width: 300px; /* Adjust based on your preference */
+  transition: transform 0.2s ease-in-out; /* Smooth transition for hover effect */
 }
 
-.read-the-docs {
-  color: #888;
+.card:hover {
+  transform: translateY(-5px); /* Slight lift effect on hover */
+}
+
+.card img {
+  width: 100%; /* Ensure the image covers the card width */
+  height: 200px; /* Fixed height for images */
+  object-fit: cover; /* Ensures the image covers the area without stretching */
+}
+
+.card h3 {
+  margin: 16px;
+  color: #ffffff; /* Margin around the title for spacing */
+}
+
+.card p {
+  margin: 0 16px 16px; /* Margin around paragraphs for spacing, no top margin */
+  color: #ffffff;
+}
+.courses {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://photo-assets.masters.com/images/pics/large/h_mag_lane_wide.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+  transition: all 0.3s ease-in-out;
+}
+.courses h1 {
+  color: rgb(227, 223, 223);
+  font-size: 5em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5)
+}
+.card {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.card.expanded {
+ /* transform: scale(1.5); /* Make the card larger */
+  z-index: 10; /* Ensure it's above other elements */
+  position: relative;
+  width: 700px;
+  height: 800px;
+  /* Add more styles as needed */
+}
+.time-list {
+  list-style: none; /* Remove default list styling */
+  padding-left: 20px; /* Remove default padding */
+  display: flex; /* Use flexbox to layout time buttons */
+   /* Center the buttons in the container */
+  flex-wrap: wrap; /* Allow items to wrap if needed */
+  gap: 10px; /* Optional: Add some space between buttons */
+}
+
+.time-list li {
+  margin-right: 10px; /* Adds some space between the buttons */
+}
+
+.time-list button {
+  background-color: #007bff; /* Example button background color */
+  color: white; /* Button text color */
+  border: none; /* Removes default border */
+  padding: 5px 10px; /* Adds some padding inside the button */
+  cursor: pointer; /* Changes cursor to pointer on hover */
+  border-radius: 5px; /* Optional: Rounds the corners of the button */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.time-list button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+.teetime-detail-info{
+  color:black
+}
+
+.teetime-page{
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://images.unsplash.com/photo-1584837140804-599306fb37f9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGdvbGZ8ZW58MHx8MHx8fDA%3D);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+  transition: all 0.3s ease-in-out;
+  font-family: Arial, sans-serif;
+  color: #fefdfd;
+  padding: 20px;
+}
+
+
+.teetime-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #004d40;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+
+.teetime-detail img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 3px solid #fff602;
+}
+
+.teetime-detail-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  color: #fefdfd;
+}
+
+.cname {
+  color: white;
+  background-color: #004d40;
+  padding: 5px 10px;
+  border-radius: 5px;
+  position: relative;
+  top: -20px; /* Adjust based on your image's aspect ratio */
+  font-size: 24px;
+}
+
+.user-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  
+}
+
+.user-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #28a745;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.user-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.signup-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease;
+}
+
+.signup-button:hover {
+  background-color: #218838;
+}
+.login-page {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://images.unsplash.com/photo-1613754627343-622ea791af6e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8dGlnZXIlMjB3b29kc3xlbnwwfHwwfHx8MA%3D%3D);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+  transition: all 0.3s ease-in-out;
+  font-family: Arial, sans-serif;
+  color: #fefdfd;
+  padding: 20px;
+}
+.login-page a {
+  color: white;
+  text-decoration: underline;
+  
+}
+.login-page p {
+  color: white;
+  margin-bottom: 15px;
+  
+}
+
+.login-form .form-group {
+  margin-bottom: 15px;
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.login-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+.c-login-page {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://images.unsplash.com/photo-1499424780482-d1f9f0d925cc?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8dGlnZXIlMjB3b29kc3xlbnwwfHwwfHx8MA%3D%3D);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+  transition: all 0.3s ease-in-out;
+  font-family: Arial, sans-serif;
+  color: #fefdfd;
+  padding: 20px;
+}
+.c-login-page a {
+  color: white;
+  text-decoration: underline;
+  
 }

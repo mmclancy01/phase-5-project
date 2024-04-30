@@ -12,7 +12,7 @@ from datetime import datetime
 # Local imports
 from config import app, db
 # Add your model imports
-from models import User, Course, Score, User
+from models import User, Course, Score, User, Teetime
 
 @app.route('/')
 def index():
@@ -32,3 +32,18 @@ def get_users():
 def get_scores():
     scores = Score.query.all()
     return [s.to_dict() for s in scores], 200
+
+@app.get('/teetimes')
+def get_tee_times():
+    tee = Teetime.query.all()
+    return [t.to_dict() for t in tee], 200
+
+@app.get('/teetimes/<int:id>')
+def get_t(id):
+    t = Teetime.query.filter(Teetime.id == id).first()
+    if not t:
+        return {"error": "Tee Time not found"}, 404
+    else: 
+        return t.to_dict(), 200
+    
+

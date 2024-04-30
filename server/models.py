@@ -6,8 +6,19 @@ from flask import Flask
 from flask_bcrypt import Bcrypt
 from sqlalchemy.ext.hybrid import hybrid_property
 from config import db
+from datetime import datetime
+
 
 bcrypt = Bcrypt()
+
+class User_Tee_time(db.Model, SerializerMixin):
+    __tablename__ = 'users_tee_times'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    tee_time_id = db.Column(db.Integer, db.ForeignKey('teetimes.id'))
+    teetimes = db.relationship('Teetime', back_populates= 'users_tee_times')
+    users = db.relationship('User', back_populates= 'users_tee_times')
+    serialize_rules = ['-users.users_tee_times', '-tee_times']
 
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
@@ -22,8 +33,9 @@ class User(db.Model, SerializerMixin):
     bio = db.Column(db.String)
     img = db.Column(db.String)
     scores = db.relationship('Score', back_populates= 'users')
+    users_tee_times = db.relationship('User_Tee_time', back_populates= 'users')
 
-    serialize_rules = ['-scores']
+    serialize_rules = ['-scores', '-users_tee_times']
 
     @hybrid_property
     def password(self):
@@ -50,8 +62,8 @@ class Course(db.Model, SerializerMixin):
     description = db.Column(db.String)
     img = db.Column(db.String)
     scores = db.relationship('Score', back_populates= 'courses')
-
-    serialize_rules = ['-scores']
+    teetimes= db.relationship('Teetime', back_populates= 'courses')
+    serialize_rules = ['-scores', '-teetimes']
 
     
 
@@ -66,3 +78,16 @@ class Score(db.Model, SerializerMixin):
     courses = db.relationship('Course', back_populates= 'scores')
 
     serialize_rules = ['-users.scores', '-courses.scores']
+    
+
+class Teetime(db.Model, SerializerMixin):
+    __tablename__ = 'teetimes'
+    id = db.Column(db.Integer, primary_key=True)
+    course = db.Column(db.Integer, db.ForeignKey('courses.id'), nullable=False)
+    date= db.Column(db.Date, nullable=False)
+    time= db.Column(db.Time, nullable=False)
+    slots_available= db.Column(db.Integer, default= 4)
+    courses = db.relationship('Course', back_populates= 'teetimes')
+    users_tee_times = db.relationship('User_Tee_time', back_populates= 'teetimes')
+    serialize_rules= ['-courses.teetimes', '-users_tee_times.teetimes']
+
