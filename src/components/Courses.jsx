@@ -3,20 +3,24 @@ import { useOutletContext } from "react-router-dom";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function Courses() {
-  const {times} = useOutletContext();
+  const { times } = useOutletContext();
   const [expandedCard, setExpandedCard] = useState(null);
-  const [courses, setCourses] = useState([])
+  const [courses, setCourses] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
+
+  
+
   useEffect(() => {
     fetch("http://127.0.0.1:5555/courses")
       .then((resp) => resp.json())
-      .then((data) => setCourses(data))
-  }, [])
+      .then((data) => setCourses(data));
+  }, []);
+
   const toggleExpandCard = (id) => {
     setExpandedCard(expandedCard === id ? null : id);
   };
 
-  // Function to group times by date for a specific course
   const groupTimesByDate = (courseId) => {
     return times
       .filter((time) => time.course === courseId)
@@ -29,16 +33,26 @@ export default function Courses() {
       }, {});
   };
 
-  // Corrected handleClick function to navigate to the specific tee time detail page
   const handleClick = (teeTimeId) => {
     navigate("/teetimes/" + teeTimeId);
   };
 
+  const filteredCourses = courses.filter((course) =>
+    course.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="courses">
       <h1>Courses</h1>
+      <input
+        type="text"
+        placeholder="Search courses..."
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        className="search-bar"
+      />
       <div className="cards-container">
-        {courses.map((c) => (
+        {filteredCourses.map((c) => (
           <div
             className={`card ${expandedCard === c.id ? "expanded" : ""}`}
             key={c.id}
