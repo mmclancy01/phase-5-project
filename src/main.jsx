@@ -8,6 +8,8 @@ import Courses from './components/Courses.jsx'
 import Teetime from './components/Teetime.jsx';
 import UserLogin from './components/UserLogin.jsx';
 import CourseLogin from './components/CourseLogin.jsx';
+import Profile from './components/Profile.jsx';
+import Signup from './components/Signup.jsx';
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -32,6 +34,14 @@ const routes = createBrowserRouter([
       {
         path:"/courseLogin",
         element: <CourseLogin />
+      },
+      {
+        path:"/profile",
+        element: <Profile />
+      },
+      {
+        path:"/signup",
+        element: <Signup />
       }
     
     ]}

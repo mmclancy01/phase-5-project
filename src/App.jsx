@@ -5,10 +5,12 @@ import './App.css'
 import Navbar from './components/Navbar.jsx'
 import { Outlet } from "react-router-dom";
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import Footer from './components/Footer.jsx'
+import Sidebar from './components/Sidebar.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
-  
+  const [user, setUser]= useState(null)
   const [times, setTimes] = useState('')
   
    useEffect(() => {
@@ -16,12 +18,14 @@ function App() {
       .then((resp) => resp.json())
       .then((data) => setTimes(data))
   }, [])
-   console.log(times)
+
 
   return (
     <div>
-    <Navbar />
-    <Outlet context={{times, setTimes }} />
+    <Navbar user={user} />
+    <Sidebar user= {user}/>
+    <Outlet context={{times, setTimes, user, setUser }} />
+    <Footer />
     </div>
   )
 }
